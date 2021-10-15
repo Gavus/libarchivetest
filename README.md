@@ -8,8 +8,9 @@ Cmake, glib, libarchive, openssl
 ```
 mkdir build && cd build
 cmake ..
-make -j12
-./libarchivetest /dev/zero
+make
+./encrypion-speed-test /dev/zero
+./password-length-test /dev/zero 100
 ```
 
 ## Generate Flamegraphs
@@ -18,7 +19,7 @@ perf record --no-buildid-cache -F99 -e cpu-clock --call-graph dwarf --pid $(pido
 perf script | ~/tools/FlameGraph/stackcollapse-perf.pl | ~/tools/FlameGraph/flamegraph.pl > out.svg
 ```
 
-## Results on certain device
+## Encryption-speed-test: Results on certain device
 | type                           | 16 bytes   | 64 bytes   | 256 bytes  | 1024 bytes | 8192 bytes | 16384 bytes |
 | ------------------------------ | ---------- | ---------- | ---------- | ---------- | ---------- | ----------- |
 | openssl speed -evp aes-256-cbc | 249079.28k | 582640.11k | 798624.60k | 872552.11k | 904836.44k | 902206.81k  |
